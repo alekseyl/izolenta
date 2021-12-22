@@ -34,9 +34,9 @@ Or install it yourself as:
 ## Usage
 
 ```ruby
-class YourMigration < ActiveRecord::Migration
+class YourMigration < ActiveRecord::Migration[5.0]
   def change
-    dalegate_uniqueness( :your_table_name, :column_name, **options )
+    delegate_uniqueness( :your_table_name, :column_name )
   end
 end
 ```
