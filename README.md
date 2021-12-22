@@ -8,7 +8,9 @@ The idea of the gem and article originated from two things:
 The first thought was to use redis mutex approach, but it lacks the simplicity and is NOT hard solid as index solution. 
 Its better than done without, but still a lot could happened to fail it eventually.  
 
-What's up with the naming? In russian 'izolenta' means electrical tape (or insulating tape) 
+So I ended up delegating UNIQUE constraint to a helper table whenever I really can win something from skipping uniq index over data set.
+
+**What's up with the naming?** In russian 'izolenta' means electrical tape (or insulating tape) 
 serving purpose of isolation ( electrical ) on some monkey patching fixing. 
 
 As the idea of the gem: patching the data circuit with a 100% isolation. 
