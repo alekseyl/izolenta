@@ -1,9 +1,5 @@
 # Izolenta
-This is a set of migration helpers for quick establishing of delegated uniqueness in Postgres.
-A good approach to solve 'optimistic' singleton record creation problem over data-set 
-with a noticeable not-HOT UPDATEs amount precent in object lifecycle. 
-
-Read more: https://leshchuk.medium.com/delegated-uniqueness-in-postgres-d0fa103f749c
+This is a set of migration helpers delivering delegated uniqueness in Postgres ( A fine approach to solve 'optimistic' singleton record creation problem over data-set with a noticeable not-HOT UPDATEs amount present in corresponding object lifecycle. Read more: https://leshchuk.medium.com/delegated-uniqueness-in-postgres-d0fa103f749c )
 
 The idea of the gem and article originated from two things: 
 - first I wanted to replace uniq index for optimistic objects creation with something less burdensome for DB.
