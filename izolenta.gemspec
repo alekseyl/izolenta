@@ -6,8 +6,8 @@ Gem::Specification.new do |spec|
   spec.authors       = ["alekseyl"]
   spec.email         = ["leshchuk@gmail.com"]
 
-  spec.summary       = %q{Short term uniqueness/isolation records with redis mutex-like behaviour}
-  spec.description   = %q{Short term uniqueness/isolation records with redis mutex-like behaviour.}
+  spec.summary       = %q{Migration helpers for delegated uniqueness in Postgres}
+  spec.description   = %q{Migration helpers for delegated uniqueness in Postgres}
   spec.homepage      = "https://github.com/alekseyl/izolenta"
   spec.license       = "MIT"
   spec.required_ruby_version = Gem::Requirement.new(">= 2.3.0")
@@ -29,4 +29,5 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency "pg"
   spec.add_development_dependency "activerecord", ">= 5"
+  spec.add_development_dependency "ruby_jard"
 end

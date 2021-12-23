@@ -1,0 +1,10 @@
+version: "3.7"
+
+services:
+  test:
+    build: .
+    image: izolenta
+    command: service postgresql start && rake test
+    volumes:
+      - '.:/app'
+

@@ -1,12 +1,16 @@
 require 'active_record'
+require 'pg'
+
 ActiveRecord::Base.establish_connection(
-  adapter: 'sqlite3',
-  database: ':memory:'
+  adapter: 'postgresql',
+  database: 'izolenta-test',
+  user: 'postgres'
 )
 
 ActiveRecord::Migration.create_table(:users) do |t|
   t.string :email
-end
+end unless ActiveRecord::Base.connection.data_source_exists? :users
+
 
 class User < ActiveRecord::Base; end
 
