@@ -39,6 +39,13 @@ class YourMigration < ActiveRecord::Migration[5.0]
     delegate_uniqueness( :your_table_name, :column_name )
   end
 end
+
+class WithWrapperFunctionMigration < ActiveRecord::Migration[5.0]
+  # define some where before 'type_conversion_function' to use it later 
+  def change
+    delegate_uniqueness( :your_table_name, :column_name, wrapper_function: 'type_conversion_function' )
+  end
+end
 ```
 
 ## Development
