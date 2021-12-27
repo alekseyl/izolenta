@@ -1,3 +1,7 @@
+#0.0.4
+- removed 'OR REPLACE' in trigger definition, lowering Postgres version constraint 
+- trigger_condition added ( could replace partial uniq index ) 
+ 
 #0.0.3
 - wrapper_function options added, you can define function to convert to uniquely sortable types, for instance array to string 
 - moved all helper functions to internal module, just to keep things clear on the migrations

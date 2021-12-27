@@ -7,14 +7,14 @@ ActiveRecord::Base.establish_connection(
   user: 'postgres'
 )
 
-ActiveRecord::Migration.create_table(:users) do |t|
+ActiveRecord::Migration.create_table(:users, force: true) do |t|
   t.string :email
-end unless ActiveRecord::Base.connection.data_source_exists? :users
+  t.boolean :force_uniq
+end
 
-ActiveRecord::Migration.create_table(:dialogs) do |t|
+ActiveRecord::Migration.create_table(:dialogs, force: true, options: 'WITH (fillfactor=70)') do |t|
   t.bigint :user_ids, array: true
-end unless ActiveRecord::Base.connection.data_source_exists? :dialogs
-
+end
 
 class User < ActiveRecord::Base; end
 

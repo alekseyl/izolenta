@@ -46,6 +46,15 @@ class WithWrapperFunctionMigration < ActiveRecord::Migration[5.0]
     delegate_uniqueness( :your_table_name, :column_name, wrapper_function: 'type_conversion_function' )
   end
 end
+
+
+class WithWrapperFunctionMigration < ActiveRecord::Migration[5.0]
+  # apply trigger condition for partial uniqueness
+  def change
+    delegate_uniqueness( :your_table_name, :column_name, trigger_condition: 'NEW.type IS NOT NULL' )
+  end
+end
+
 ```
 
 ## Development

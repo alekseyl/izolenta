@@ -8,6 +8,12 @@ class EmailDelegatedUniqueness < ActiveRecord::Migration[4.2]
   end
 end
 
+class EmailUniquenessConditioned < ActiveRecord::Migration[4.2]
+  def change
+    delegate_uniqueness( :users, :email, trigger_condition: "NEW.force_uniq" )
+  end
+end
+
 class DialogUsersUniqueness < ActiveRecord::Migration[4.2]
   def change
     delegate_uniqueness( :dialogs, :user_ids, wrapper_function: 'user_ids_to_str' )
@@ -52,4 +58,11 @@ class IzolentaTest < ActiveSupport::TestCase
     assert_difference( -> {Dialog.count} ) { Dialog.create!( user_ids: [2,1])  }
   end
 
+
+  test 'UNIQUENESS is applied when condition is met and VICE VERSA' do
+    EmailUniquenessConditioned.new.migrate(:up)
+    assert_difference( -> {User.count} ) { User.create!(email: 'test', force_uniq: true) }
+    assert_raise( ActiveRecord::RecordNotUnique ) { User.create!(email: 'test', force_uniq: true)  }
+    assert_difference( -> {User.count} ) { User.create!(email: 'test' ) }
+  end
 end

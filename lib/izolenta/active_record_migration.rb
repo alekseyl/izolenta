@@ -29,6 +29,9 @@ module Izolenta::ActiveRecordMigration
         trg_name = "#{table}_#{column_name}_trg"
         insert_value = options[:wrapper_function] ? "#{options[:wrapper_function]}(NEW.#{column_name})"
           : "NEW.#{column_name}"
+
+        trigger_condition = "WHEN( #{options[:trigger_condition]} )" if options[:trigger_condition]
+
         ActiveRecord::Base.connection.execute <<~SYNC_TRIGGER
           CREATE OR REPLACE FUNCTION #{trg_name}() RETURNS trigger AS $$
           BEGIN 
@@ -36,7 +39,9 @@ module Izolenta::ActiveRecordMigration
             RETURN NEW;
           END $$ LANGUAGE plpgSQL;
   
-          CREATE OR REPLACE TRIGGER #{trg_name} BEFORE INSERT ON #{table} FOR EACH ROW
+          CREATE TRIGGER #{trg_name} BEFORE INSERT ON #{table} 
+          FOR EACH ROW
+          #{trigger_condition}
           EXECUTE FUNCTION #{trg_name}();
         SYNC_TRIGGER
       end
@@ -49,7 +54,7 @@ module Izolenta::ActiveRecordMigration
         SYNC_TRIGGER
       end
 
-      def get_new_column_type(origin_table, column, wrapper_function: nil)
+      def get_new_column_type(origin_table, column, wrapper_function: nil, **)
         wrapper_function ? get_function_type(wrapper_function) : get_column_type(origin_table, column)
       end
 
