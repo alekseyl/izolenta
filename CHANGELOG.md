@@ -1,3 +1,7 @@
+#0.0.5
+- rubocop-shopify added to dev dependencies
+- fixed ruby 3.0 incompatibility in delegate_uniqueness, now gem could be used with ruby 3+
+
 #0.0.4
 - removed 'OR REPLACE' in trigger definition, lowering Postgres version constraint 
 - trigger_condition added ( could replace partial uniq index ) 
