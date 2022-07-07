@@ -11,7 +11,7 @@ if defined? ActiveRecord
         reversible do |dir|
           dir.up do
             Helpers.create_helper_table(helper_table_name, column,
-              Helpers.get_new_column_type(origin_table, column, options))
+              Helpers.get_new_column_type(origin_table, column, **options))
             add_index(helper_table_name, column, unique: true)
 
             Helpers.create_sync_trigger(origin_table, column, helper_table_name, options)

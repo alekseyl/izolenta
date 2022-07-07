@@ -64,6 +64,9 @@ docker-compose build
 
 docker-compose run test /bin/bash
 > service postgresql start && rake test
+
+docker-compose run test3 /bin/bash
+> service postgresql start && rake test
 ```
 
 ## Future Features

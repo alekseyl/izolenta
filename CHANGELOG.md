@@ -1,3 +1,7 @@
+#0.0.6
+- new ruby 3 image for ruby 3 testing
+- fix get_new_column_type incompatibility with ruby 
+
 #0.0.5
 - rubocop-shopify added to dev dependencies
 - fixed ruby 3.0 incompatibility in delegate_uniqueness, now gem could be used with ruby 3+

@@ -8,3 +8,11 @@ services:
     volumes:
       - '.:/app'
 
+  test3:
+    build:
+      context: .
+      dockerfile: ruby3.Dockerfile
+    image: izolenta3
+    command: service postgresql start && rake test
+    volumes:
+      - '.:/app'
