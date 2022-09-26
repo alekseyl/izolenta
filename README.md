@@ -3,7 +3,7 @@ This is a set of migration helpers delivering delegated uniqueness in Postgres (
 
 The idea of the gem and article originated from two things: 
 - first I wanted to replace uniq index for optimistic objects creation with something less burdensome for DB.
-- second I realised that trigger based solution for dialogs uniqueness I was using will fail to serve its purpose on a default PG isolaiton level.
+- second I realised that trigger based solution for record uniqueness I was using will fail to serve its purpose on a default PG isolaiton level.
 
 The first thought was to use redis mutex approach, but it lacks the simplicity and is NOT hard solid as index solution. 
 Its better than done without, but still a lot could happened to fail it eventually.  
